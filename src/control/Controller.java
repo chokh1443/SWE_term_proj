@@ -60,7 +60,6 @@ public class Controller implements IController{
 				c.compare();
 			}
 		}
-		
 	}
 
 	@Override

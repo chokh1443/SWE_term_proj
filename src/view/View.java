@@ -85,14 +85,15 @@ public class View implements IView {
 		copyToLeft.setName("copyToLeft");
 		copyToRight.setName("copyToRight");
 		compare.setName("compare");
-		this.loadLeft.addActionListener(action);
-		this.saveLeft.addActionListener(action);
-		this.editLeft.addActionListener(action);
-		this.loadRight.addActionListener(action);
-		this.saveRight.addActionListener(action);
-		this.editRight.addActionListener(action);
-		this.copyToLeft.addActionListener(action);
-		this.copyToRight.addActionListener(action);
-		this.compare.addActionListener(action);
+		
+		loadLeft.addActionListener(action);
+		saveLeft.addActionListener(action);
+		editLeft.addActionListener(action);
+		loadRight.addActionListener(action);
+		saveRight.addActionListener(action);
+		editRight.addActionListener(action);
+		copyToLeft.addActionListener(action);
+		copyToRight.addActionListener(action);
+		compare.addActionListener(action);
 	}
 }
