@@ -19,7 +19,7 @@ public class View implements IView {
 	static JPanel panelRight = new JPanel();
 	static JPanel panelDown = new JPanel();
 
-	JButton loadLeft = new JButton("LOAD");
+	static JButton loadLeft = new JButton("LOAD");
 	static JButton saveLeft = new JButton("SAVE");
 	static JButton editLeft = new JButton("EDIT");
 	static JTextArea textLeft = new JTextArea(28, 43);
@@ -43,11 +43,8 @@ public class View implements IView {
 		panelRight.setBounds(500, 5, 490, 550);
 		panelDown.setBounds(0, 570, 1000, 100);
 
-		
-		textLeft.setEditable(false);
-		textLeft.setBackground(new Color(200,200,200));
-		textRight.setEditable(false);
-		textRight.setBackground(new Color(200,200,200));
+		disableText("left");
+		disableText("right");
 		
 		panelLeft.add(loadLeft);
 		panelLeft.add(saveLeft);
@@ -104,6 +101,51 @@ public class View implements IView {
 	public void showData(String side, String data) {
 		if(side.equals("left")){
 			textLeft.append(data);
-		}		
+		}
+		else if(side.equals("right")){
+			textRight.append(data);
+		}
+	}
+
+	@Override
+	public void switchTextAreaEditable(String side) {
+		System.out.println(side);
+		if(side.equals("left")) {
+			if(textLeft.isEditable()) {
+				disableText(side);
+			}
+			else {
+				enableText(side);
+			}
+		}
+		else if(side.equals("right")){
+			if(textRight.isEditable()) {
+				disableText(side);
+			}
+			else {
+				enableText(side);
+			}			
+		}
+	}
+	
+	public void enableText(String side) {
+		if(side.equals("left")) {
+			textLeft.setEditable(true);
+			textLeft.setBackground(new Color(255,255,255));
+		}
+		if(side.equals("right")) {
+			textRight.setEditable(true);
+			textRight.setBackground(new Color(255,255,255));
+		}
+	}
+	public void disableText(String side) {
+		if(side.equals("left")) {
+			textLeft.setEditable(false);
+			textLeft.setBackground(new Color(200,200,200));
+		}
+		if(side.equals("right")) {
+			textRight.setEditable(false);
+			textRight.setBackground(new Color(200,200,200));
+		}				
 	}
 }

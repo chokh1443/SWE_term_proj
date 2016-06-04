@@ -2,6 +2,9 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JFileChooser;
 
 import model.FileModel;
 import view.View;
@@ -33,22 +36,22 @@ public class Controller implements IController{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(e.getSource().toString().contains("loadLeft")){
-				c.loadLeft();
+				c.load("left");
 			}
 			else if(e.getSource().toString().contains("saveLeft")){
-				c.saveLeft();
+				c.save("left");
 			}
 			else if(e.getSource().toString().contains("editLeft")){
-				c.editLeft();
+				c.edit("left");
 			}
 			else if(e.getSource().toString().contains("loadRight")){
-				c.loadRight();
+				c.load("right");
 			}
 			else if(e.getSource().toString().contains("saveRight")){
-				c.saveRight();
+				c.save("right");
 			}
 			else if(e.getSource().toString().contains("editRight")){
-				c.editRight();
+				c.edit("right");
 			}
 			else if(e.getSource().toString().contains("copyToLeft")){
 				c.copyToLeft();
@@ -63,49 +66,52 @@ public class Controller implements IController{
 	}
 
 	@Override
-	public void loadLeft() {
-		String fileAddress = System.getProperty("user.dir")+"\\testfile\\left.txt";
-		if( left.loadData(fileAddress) ){
-			 view.showData("left", left.DataToAString());
+	public void load(String side) {
+		String fileAddress = "";
+		JFileChooser fileChooser = new JFileChooser();
+		
+		if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			fileAddress = fileChooser.getSelectedFile().getPath();
 		}
-			
-		else
-			System.out.println("Fail to load at Controller.loadLeft.left.loadData()");
+		else {
+			System.out.println("Fail to load at Controller.load()");
+		}
+		if (side.equals("left")){
+			if( left.loadData(fileAddress)){
+				 view.showData(side, left.DataToAString());
+			}
+		}
+		else if(side.equals("right")) {
+			if( right.loadData(fileAddress)){
+				 view.showData(side, right.DataToAString());
+			}
+		}
+	}
+
+	@Override
+	public void save(String side) {
+		String fileAddress = "";
+		JFileChooser fileChooser = new JFileChooser();
 		
-		// TODO Auto-generated method stub
-		
-		
+		if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			fileAddress = fileChooser.getSelectedFile().getPath();
+		}
+		else {
+			System.out.println("Fail to load at Controller.load()");
+		}
+		if (side.equals("left")){
+			left.saveData(fileAddress);
+		}
+		else if(side.equals("right")) {
+			right.saveData(fileAddress);
+		}
+	}
+	
+	@Override
+	public void edit(String side) {
+		view.switchTextAreaEditable(side);
 	}
 
-	@Override
-	public void saveLeft() {
-		// TODO Auto-generated method stub
-		System.out.println("SL");
-	}
-
-	@Override
-	public void editLeft() {
-		// TODO Auto-generated method stub
-		System.out.println("EL");
-	}
-
-	@Override
-	public void loadRight() {
-		// TODO Auto-generated method stub
-		System.out.println("LR");
-	}
-
-	@Override
-	public void saveRight() {
-		// TODO Auto-generated method stub
-		System.out.println("SR");
-	}
-
-	@Override
-	public void editRight() {
-		// TODO Auto-generated method stub
-		System.out.println("ER");
-	}
 
 	@Override
 	public void copyToLeft() {
@@ -124,6 +130,8 @@ public class Controller implements IController{
 		// TODO Auto-generated method stub
 		System.out.println("COM");
 	}
+
+
 
 
 

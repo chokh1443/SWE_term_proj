@@ -8,13 +8,9 @@ public interface IController {
 	FileModel right = null;
 	View view = null;
 	
-	abstract void loadLeft();
-	abstract void saveLeft();
-	abstract void editLeft();
-	
-	abstract void loadRight();
-	abstract void saveRight();
-	abstract void editRight();
+	abstract void load(String side);
+	abstract void save(String side);
+	abstract void edit(String side);
 	
 	abstract void copyToLeft();
 	abstract void copyToRight();
