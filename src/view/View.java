@@ -19,21 +19,21 @@ public class View implements IView {
 	static JPanel panelRight = new JPanel();
 	static JPanel panelDown = new JPanel();
 
-	public static JButton loadLeft = new JButton("LOAD");
-	public static JButton saveLeft = new JButton("SAVE");
-	public static JButton editLeft = new JButton("EDIT");
+	static JButton loadLeft = new JButton("LOAD");
+	static JButton saveLeft = new JButton("SAVE");
+	static JButton editLeft = new JButton("EDIT");
 	static JTextArea textLeft = new JTextArea(28, 43);
 	static JScrollPane scrollPaneLeft = new JScrollPane(textLeft);
 
-	public static JButton loadRight = new JButton("LOAD");
-	public static JButton saveRight = new JButton("SAVE");
-	public static JButton editRight = new JButton("EDIT");
+	static JButton loadRight = new JButton("LOAD");
+	static JButton saveRight = new JButton("SAVE");
+	static JButton editRight = new JButton("EDIT");
 	static JTextArea textRight = new JTextArea(28, 43);
 	static JScrollPane scrollPaneRight = new JScrollPane(textRight);
 
-	public static JButton copyToLeft = new JButton("<-");
-	public static JButton copyToRight = new JButton("->");
-	public static JButton compare = new JButton("COMPARE");
+	static JButton copyToLeft = new JButton("<-");
+	static JButton copyToRight = new JButton("->");
+	static JButton compare = new JButton("COMPARE");
 
 	public void make() {
 
@@ -71,30 +71,21 @@ public class View implements IView {
 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 	}
 
 	@Override
-	public void attachEvent(String name, ActionListener action) {
+	public void attachEvent(ActionListener action) {
 		// TODO Auto-generated method stub
 		// Event Listeners
-		if (name.equals("loadLeft"))
-			loadLeft.addActionListener(action);
-		else if(name.equals("saveLeft"))
-			saveLeft.addActionListener(action);
-		else if(name.equals("editLeft"))
-			editLeft.addActionListener(action);
-		else if(name.equals("loadRight"))
-			loadRight.addActionListener(action);
-		else if(name.equals("saveRight"))
-			saveRight.addActionListener(action);
-		else if(name.equals("editRight"))
-			editRight.addActionListener(action);
-		else if(name.equals("copyToLeft"))
-			copyToLeft.addActionListener(action);
-		else if(name.equals("copyToRight"))
-			copyToRight.addActionListener(action);
-		else if(name.equals("compare"))
-			compare.addActionListener(action);
+		this.loadLeft.addActionListener(action);
+		this.saveLeft.addActionListener(action);
+		this.editLeft.addActionListener(action);
+		this.loadRight.addActionListener(action);
+		this.saveRight.addActionListener(action);
+		this.editRight.addActionListener(action);
+		this.copyToLeft.addActionListener(action);
+		this.copyToRight.addActionListener(action);
+		this.compare.addActionListener(action);
 	}
 }

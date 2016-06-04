@@ -16,6 +16,10 @@ public interface IController {
 	abstract void saveRight();
 	abstract void editRight();
 	
+	abstract void copyToLeft();
+	abstract void copyToRight();
+	abstract void compare();
+	
 
 	
 }

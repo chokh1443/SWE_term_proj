@@ -10,104 +10,53 @@ public class Controller implements IController{
 	FileModel left = null;
 	FileModel right = null;
 	View view = null;
-	
-	ActionListener loadLeftAction;
-	ActionListener saveLeftAction;
-	ActionListener editLeftAction;
-	ActionListener loadRightAction;
-	ActionListener saveRightAction;
-	ActionListener editRightAction;
-	ActionListener copyToLeftAction;
-	ActionListener copyToRightAction;
-	ActionListener compareAction;
-	
+	ActionListener myActionListener;
 	public Controller(FileModel left, FileModel right, View v ){
 		this.left = left;
 		this.right = right;
-		this.view = v;		
-		
+		this.view = v;
 		view.make();
 		this.setup();
 		
 	}
 	
 	public void setup() {
-		loadLeftAction = new eLoadLeft(this);
-		view.attachEvent("loadLeft",loadLeftAction);
-		saveLeftAction = new eSaveLeft(this);
-		view.attachEvent("saveLeft", saveLeftAction);
-		editLeftAction = new eEditLeft(this);
-		view.attachEvent("editLeft", editLeftAction);
-		loadRightAction = new eLoadRight(this);
-		view.attachEvent("loadRight", loadRightAction);
-		saveRightAction = new eSaveRight(this);
-		view.attachEvent("saveRight", loadRightAction);
-		editRightAction = new eEditRight(this);
-		view.attachEvent("editRight", editRightAction);
+		myActionListener = new MyActionListener(this);
+		this.view.attachEvent(myActionListener);
+	}
+	public class MyActionListener implements ActionListener {
+		Controller c;
+		public MyActionListener(Controller c) {
+			this.c = c;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.println("aaa");
+//			if (name.equals("loadLeft")) {
+//				this.loadLeft.addActionListener(action);
+//				System.out.println("here");
+//			}			
+//			else if(name.equals("saveLeft"))
+//				saveLeft.addActionListener(action);
+//			else if(name.equals("editLeft"))
+//				editLeft.addActionListener(action);
+//			else if(name.equals("loadRight"))
+//				loadRight.addActionListener(action);
+//			else if(name.equals("saveRight"))
+//				saveRight.addActionListener(action);
+//			else if(name.equals("editRight"))
+//				editRight.addActionListener(action);
+//			else if(name.equals("copyToLeft"))
+//				copyToLeft.addActionListener(action);
+//			else if(name.equals("copyToRight"))
+//				copyToRight.addActionListener(action);
+//			else if(name.equals("compare"))
+//				compare.addActionListener(action);
+		}
 		
 	}
-	public class eLoadLeft implements ActionListener {
-		Controller c;
-		public eLoadLeft(Controller c ){
-			this.c = c;
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			c.loadLeft();
-		}
-	}
-	public class eSaveLeft implements ActionListener{
-		Controller c;
-		public eSaveLeft(Controller c) {
-			this.c = c;
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			c.saveLeft();
-		}
-	}
-	public class eEditLeft implements ActionListener {
-		Controller c;
-		public eEditLeft(Controller c ){
-			this.c = c;
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			c.editLeft();
-		}
-	}
-	public class eLoadRight implements ActionListener {
-		Controller c;
-		public eLoadRight(Controller c ){
-			this.c = c;
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			c.loadRight();
-		}
-	}
-	public class eSaveRight implements ActionListener{
-		Controller c;
-		public eSaveRight(Controller c) {
-			this.c = c;
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			c.saveRight();
-		}
-	}
-	public class eEditRight implements ActionListener {
-		Controller c;
-		public eEditRight(Controller c ){
-			this.c = c;
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			c.editRight();
-		}
-	}
-	
-	
+
 	@Override
 	public void loadLeft() {
 		String fileAddress = "";
@@ -150,6 +99,24 @@ public class Controller implements IController{
 
 	@Override
 	public void editRight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void copyToLeft() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void copyToRight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void compare() {
 		// TODO Auto-generated method stub
 		
 	}
