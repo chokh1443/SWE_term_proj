@@ -109,7 +109,6 @@ public class View implements IView {
 
 	@Override
 	public void switchTextAreaEditable(String side) {
-		System.out.println(side);
 		if(side.equals("left")) {
 			if(textLeft.isEditable()) {
 				disableText(side);

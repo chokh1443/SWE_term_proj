@@ -72,9 +72,7 @@ public class FileModel implements IModel{
 			for(String s : this.Data) {
 				out.write(s);
 				out.newLine();
-				System.out.println("1");
 			}
-			System.out.println("2");
 			out.close();
 		} catch (IOException e) {
 			System.out.println("Load failed in FileModel.saveData()");
