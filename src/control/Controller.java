@@ -32,25 +32,82 @@ public class Controller implements IController{
 	}
 	
 	public void setup() {
-		loadLeftAction = new ELoadLeft(this);
-		
+		loadLeftAction = new eLoadLeft(this);
 		view.attachEvent("loadLeft",loadLeftAction);
+		saveLeftAction = new eSaveLeft(this);
+		view.attachEvent("saveLeft", saveLeftAction);
+		editLeftAction = new eEditLeft(this);
+		view.attachEvent("editLeft", editLeftAction);
+		loadRightAction = new eLoadRight(this);
+		view.attachEvent("loadRight", loadRightAction);
+		saveRightAction = new eSaveRight(this);
+		view.attachEvent("saveRight", loadRightAction);
+		editRightAction = new eEditRight(this);
+		view.attachEvent("editRight", editRightAction);
+		
 	}
-	public class ELoadLeft implements ActionListener {
-		Controller controller;
-		ELoadLeft(Controller c ){
-			this.controller = c;
+	public class eLoadLeft implements ActionListener {
+		Controller c;
+		public eLoadLeft(Controller c ){
+			this.c = c;
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			controller.loadLeft();
+			c.loadLeft();
 		}
-		
+	}
+	public class eSaveLeft implements ActionListener{
+		Controller c;
+		public eSaveLeft(Controller c) {
+			this.c = c;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			c.saveLeft();
+		}
+	}
+	public class eEditLeft implements ActionListener {
+		Controller c;
+		public eEditLeft(Controller c ){
+			this.c = c;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			c.editLeft();
+		}
+	}
+	public class eLoadRight implements ActionListener {
+		Controller c;
+		public eLoadRight(Controller c ){
+			this.c = c;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			c.loadRight();
+		}
+	}
+	public class eSaveRight implements ActionListener{
+		Controller c;
+		public eSaveRight(Controller c) {
+			this.c = c;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			c.saveRight();
+		}
+	}
+	public class eEditRight implements ActionListener {
+		Controller c;
+		public eEditRight(Controller c ){
+			this.c = c;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			c.editRight();
+		}
 	}
 	
-
-
+	
 	@Override
 	public void loadLeft() {
 		String fileAddress = "";
