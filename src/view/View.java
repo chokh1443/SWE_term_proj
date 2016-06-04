@@ -19,7 +19,7 @@ public class View implements IView {
 	static JPanel panelRight = new JPanel();
 	static JPanel panelDown = new JPanel();
 
-	static JButton loadLeft = new JButton("LOAD");
+	JButton loadLeft = new JButton("LOAD");
 	static JButton saveLeft = new JButton("SAVE");
 	static JButton editLeft = new JButton("EDIT");
 	static JTextArea textLeft = new JTextArea(28, 43);
@@ -71,13 +71,20 @@ public class View implements IView {
 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
 
 	@Override
 	public void attachEvent(ActionListener action) {
 		// TODO Auto-generated method stub
-		// Event Listeners
+		loadLeft.setName("loadLeft");
+		saveLeft.setName("saveLeft");
+		editLeft.setName("editLeft");
+		loadRight.setName("loadRight");
+		saveRight.setName("saveRight");
+		editRight.setName("editRight");
+		copyToLeft.setName("copyToLeft");
+		copyToRight.setName("copyToRight");
+		compare.setName("compare");
 		this.loadLeft.addActionListener(action);
 		this.saveLeft.addActionListener(action);
 		this.editLeft.addActionListener(action);
