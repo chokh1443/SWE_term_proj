@@ -12,28 +12,28 @@ import javax.swing.*;
 
 //import controller.IController;
 
-public class View {
+public class View implements IView {
 	static JFrame frame = new JFrame("myMerger");
 
 	static JPanel panelLeft = new JPanel();
 	static JPanel panelRight = new JPanel();
 	static JPanel panelDown = new JPanel();
 
-	static JButton loadLeft = new JButton("LOAD");
-	static JButton saveLeft = new JButton("SAVE");
-	static JButton editLeft = new JButton("EDIT");
+	public static JButton loadLeft = new JButton("LOAD");
+	public static JButton saveLeft = new JButton("SAVE");
+	public static JButton editLeft = new JButton("EDIT");
 	static JTextArea textLeft = new JTextArea(28, 43);
 	static JScrollPane scrollPaneLeft = new JScrollPane(textLeft);
 
-	static JButton loadRight = new JButton("LOAD");
-	static JButton saveRight = new JButton("SAVE");
-	static JButton editRight = new JButton("EDIT");
+	public static JButton loadRight = new JButton("LOAD");
+	public static JButton saveRight = new JButton("SAVE");
+	public static JButton editRight = new JButton("EDIT");
 	static JTextArea textRight = new JTextArea(28, 43);
 	static JScrollPane scrollPaneRight = new JScrollPane(textRight);
 
-	static JButton copyToLeft = new JButton("<-");
-	static JButton copyToRight = new JButton("->");
-	static JButton compare = new JButton("COMPARE");
+	public static JButton copyToLeft = new JButton("<-");
+	public static JButton copyToRight = new JButton("->");
+	public static JButton compare = new JButton("COMPARE");
 
 	public void make() {
 
@@ -71,111 +71,30 @@ public class View {
 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+	@Override
+	public void attachEvent(String name, ActionListener action) {
+		// TODO Auto-generated method stub
 		// Event Listeners
-		loadLeft.addActionListener(new ELoadLeftListener());
-		saveLeft.addActionListener(new ESaveLeftListener());
-		editLeft.addActionListener(new EEditLeftListener());
-		loadRight.addActionListener(new ELoadRightListener());
-		saveRight.addActionListener(new ESaveRightListener());
-		editRight.addActionListener(new EEditRightListener());
-		copyToLeft.addActionListener(new ECopyToLeftListener());
-		copyToRight.addActionListener(new ECopyToRightListener());
-		compare.addActionListener(new ECompare());
-
+		if (name.equals("loadLeft"))
+			loadLeft.addActionListener(action);
+		else if(name.equals("saveLeft"))
+			saveLeft.addActionListener(action);
+		else if(name.equals("editLeft"))
+			editLeft.addActionListener(action);
+		else if(name.equals("loadRight"))
+			loadRight.addActionListener(action);
+		else if(name.equals("saveRight"))
+			saveRight.addActionListener(action);
+		else if(name.equals("editRight"))
+			editRight.addActionListener(action);
+		else if(name.equals("copyToLeft"))
+			copyToLeft.addActionListener(action);
+		else if(name.equals("copyToRight"))
+			copyToRight.addActionListener(action);
+		else if(name.equals("compare"))
+			compare.addActionListener(action);
 	}
-	public class EEditLeftListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	public class EEditRightListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	public class ELoadLeftListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	public class ELoadRightListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	public class ESaveLeftListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	
-	public class ESaveRightListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	
-	public class ECopyToLeftListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-	public class ECopyToRightListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	public class ECompare implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-	
-	public void showData(String data){
-		
-	}
-
 }
