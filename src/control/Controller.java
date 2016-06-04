@@ -64,15 +64,14 @@ public class Controller implements IController{
 
 	@Override
 	public void loadLeft() {
-		String fileAddress = "";
-		System.out.println("LL");
-//		if( left.loadData("") ){
-//			 view.showData(left.DataToAString());
-//		}
-//			
-//		else
-//			System.out.println("Fail to load at Controller.loadLeft.left.loadData()");
-//		
+		String fileAddress = System.getProperty("user.dir")+"\\testfile\\left.txt";
+		if( left.loadData(fileAddress) ){
+			 view.showData("left", left.DataToAString());
+		}
+			
+		else
+			System.out.println("Fail to load at Controller.loadLeft.left.loadData()");
+		
 		// TODO Auto-generated method stub
 		
 		

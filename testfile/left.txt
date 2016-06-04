@@ -43,12 +43,9 @@ public class View implements IView {
 		panelRight.setBounds(500, 5, 490, 550);
 		panelDown.setBounds(0, 570, 1000, 100);
 
-		
-		textLeft.setEditable(false);
-		textLeft.setBackground(new Color(200,200,200));
-		textRight.setEditable(false);
-		textRight.setBackground(new Color(200,200,200));
-		
+		panelLeft.setBackground(new Color(255, 9, 9));
+		panelRight.setBackground(new Color(0, 255, 0));
+
 		panelLeft.add(loadLeft);
 		panelLeft.add(saveLeft);
 		panelLeft.add(editLeft);
@@ -98,12 +95,5 @@ public class View implements IView {
 		copyToLeft.addActionListener(action);
 		copyToRight.addActionListener(action);
 		compare.addActionListener(action);
-	}
-
-	@Override
-	public void showData(String side, String data) {
-		if(side.equals("left")){
-			textLeft.append(data);
-		}		
 	}
 }
