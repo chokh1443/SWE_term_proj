@@ -147,4 +147,5 @@ public class View implements IView {
 			textRight.setBackground(new Color(200,200,200));
 		}				
 	}
+
 }
