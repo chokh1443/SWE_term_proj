@@ -1,4 +1,4 @@
-package control;
+package controll;
 
 import model.FileModel;
 import view.View;

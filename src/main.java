@@ -1,5 +1,5 @@
-import control.Controller;
-import control.IController;
+import controll.Controller;
+import controll.IController;
 import model.FileModel;
 import view.View;
 

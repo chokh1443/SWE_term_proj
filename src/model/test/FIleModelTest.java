@@ -13,22 +13,22 @@ public class FIleModelTest {
 		String fileAddr = System.getProperty("user.dir")+"\\FileModel.txt";
 		FileModel model = new FileModel();
 		assertTrue(model.loadData(fileAddr));
-		
 	}
 
 	@Test
 	public void testDataToAString() {
-		fail("Not yet implemented");
+		String fileAddr = System.getProperty("user.dir")+"\\FileModel.txt";
+		FileModel model = new FileModel();
+		model.loadData(fileAddr);
+		assertNotNull(model.DataToAString());
 	}
 
-	@Test
-	public void testUpdateData() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testSaveData() {
-		fail("Not yet implemented");
+		String fileAddr = System.getProperty("user.dir")+"\\FileModel.txt";
+		FileModel model = new FileModel();
+		model.loadData(fileAddr);
+		assertTrue(model.saveData(fileAddr));	
 	}
-
 }
