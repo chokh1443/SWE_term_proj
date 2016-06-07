@@ -4,32 +4,37 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ControllerTest {
+import controll.Controller;
+import model.FileModel;
+import view.View;
 
+public class ControllerTest {
+	String fileAddr = System.getProperty("user.dir")+"\\FileModel.txt";
+	FileModel left = new FileModel();
+	FileModel right = new FileModel();
+	View view = new View();
+	Controller controller = null; 
+	
 	@Test
 	public void testController() {
-		fail("Not yet implemented");
+		controller = new Controller(left, right, view);
+		assertNotNull(controller);
 	}
 
-	@Test
-	public void testSetup() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testLoad() {
+//		//success of testController() means success of testLoad()
+//	}
 
-	@Test
-	public void testLoad() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testSave() {
+//		controller.save("left");
+//	}
 
-	@Test
-	public void testSave() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEdit() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testEdit() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void testCopyToLeft() {
