@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 
 public class FileModel implements IModel{
+	ArrayList<String> Data = new ArrayList<String>();
 	
 	public boolean loadData(String fileAddress){//This function called when load a file
 		Scanner loader = null;
@@ -25,9 +26,9 @@ public class FileModel implements IModel{
 			return false; //fail to read 
 		}
 		
-		Data.clear();
+		this.Data.clear();
 		while(loader.hasNextLine()){ //Load file into ArrayList<String> Data
-			Data.add(loader.nextLine());
+			this.Data.add(loader.nextLine());
 		}
 
 		/*
@@ -42,12 +43,12 @@ public class FileModel implements IModel{
 	public String DataToAString(){
 		String result="";
 		
-		for(int i =0; i < Data.size(); i++){
-			result += Data.get(i);
+		for(int i =0; i < this.Data.size(); i++){
+			result += this.Data.get(i);
 			result +="\n";
 		}
 		
-		System.out.println(result); // quik test
+		//System.out.println(result); // quik test
 		
 		return result;
 	}

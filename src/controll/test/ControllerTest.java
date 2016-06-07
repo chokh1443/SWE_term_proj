@@ -15,11 +15,11 @@ public class ControllerTest {
 	View view = new View();
 	Controller controller = null; 
 	
-	@Test
-	public void testController() {
-		controller = new Controller(left, right, view);
-		assertNotNull(controller);
-	}
+//	@Test
+//	public void testController() {
+//		controller = new Controller(left, right, view);
+//		assertNotNull(controller);
+//	}
 
 //	@Test
 //	public void testLoad() {

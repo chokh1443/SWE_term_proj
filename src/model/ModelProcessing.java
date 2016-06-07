@@ -22,7 +22,7 @@ public class ModelProcessing implements IModelProcessing{
 		
 		for(l = 1; l <= leftLength ; l++){ // 최종값은 lcs[leftLength][rightLength] 에 저장.
 			for(r = 1; r <= rightLength ; r++){
-				if( left.Data.get(l).equals( right.Data.get(r) ) ){
+				if( left.Data.get(l-1).equals( right.Data.get(r-1) ) ){
 						lcs[l][r] = lcs[l-1][r-1] + 1;
 						areaLeft[l-1] = 0;
 						areaRight[r-1] = 0;

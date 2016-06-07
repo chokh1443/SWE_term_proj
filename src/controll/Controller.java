@@ -19,8 +19,9 @@ public class Controller implements IController{
 	
 	
 	public Controller(ModelProcessing MP,  View v){
-		this.left = MP.getLeft();
-		this.right = MP.getRight();
+		this.mp = MP;
+		this.left = this.mp.getLeft();
+		this.right = this.mp.getRight();
 		this.view = v;
 		view.make();
 		this.setup();
@@ -77,7 +78,7 @@ public class Controller implements IController{
 		
 		if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			fileAddress = fileChooser.getSelectedFile().getPath();
-		}
+		}		
 		else {
 			System.out.println("Fail to load at Controller.load()");
 		}
@@ -134,8 +135,8 @@ public class Controller implements IController{
 	public void compare() {
 		// TODO Auto-generated method stub
 		mp.compare();
-	//	view.showDiffArea(mp.getLeftArea(), left.DataToAString() );
-	//	view.showDiffArea(mp.getRightArea(), right.DataToAString() );
+		view.showDiffArea(mp.getLeftArea(), left.DataToAString() );
+		view.showDiffArea(mp.getRightArea(), right.DataToAString() );
 		
 		System.out.println("COM");
 	}

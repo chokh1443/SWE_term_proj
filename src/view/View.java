@@ -100,9 +100,11 @@ public class View implements IView {
 	@Override
 	public void showData(String side, String data) {
 		if(side.equals("left")){
+			textLeft.setText("");
 			textLeft.append(data);
 		}
 		else if(side.equals("right")){
+			textRight.setText("");
 			textRight.append(data);
 		}
 	}
@@ -147,5 +149,20 @@ public class View implements IView {
 			textRight.setBackground(new Color(200,200,200));
 		}				
 	}
+
+	@Override
+	public void showDiffArea(int[] side, String data) {
+		// TODO Auto-generated method stub
+		System.out.println("-----------side---------------");
+		//System.out.println(side.length);
+		for(int i=0;i<side.length;i++){
+			System.out.println(side[i]);
+		}
+		System.out.println("-----------sideEnd---------------");
+		//System.out.println(data);
+		
+	}
+
+
 
 }
