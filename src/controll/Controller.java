@@ -7,21 +7,26 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import model.FileModel;
+import model.ModelProcessing;
 import view.View;
 
 public class Controller implements IController{
 	FileModel left = null;
 	FileModel right = null;
+	ModelProcessing mp = null;
 	View view = null;
 	ActionListener myActionListener;
-	public Controller(FileModel left, FileModel right, View v ){
-		this.left = left;
-		this.right = right;
+	
+	
+	public Controller(ModelProcessing MP,  View v){
+		this.left = MP.getLeft();
+		this.right = MP.getRight();
 		this.view = v;
 		view.make();
 		this.setup();
 		
 	}
+	
 	
 	public void setup() {
 		myActionListener = new MyActionListener(this);
@@ -128,6 +133,10 @@ public class Controller implements IController{
 	@Override
 	public void compare() {
 		// TODO Auto-generated method stub
+		mp.compare();
+	//	view.showDiffArea(mp.getLeftArea(), left.DataToAString() );
+	//	view.showDiffArea(mp.getRightArea(), right.DataToAString() );
+		
 		System.out.println("COM");
 	}
 

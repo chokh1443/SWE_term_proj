@@ -1,16 +1,18 @@
 import controll.Controller;
 import controll.IController;
 import model.FileModel;
+import model.ModelProcessing;
 import view.View;
 
 public class main {
 	public static void main (String[] args){
 		FileModel leftModel = new FileModel();
 		FileModel rightModel = new FileModel();
+		ModelProcessing mProcessing = new ModelProcessing(leftModel, rightModel);
 		View mainView = new View();
 		
 		
-		IController a = new Controller(leftModel, rightModel, mainView);
+		IController a = new Controller(mProcessing, mainView);
 		
 		
 		
