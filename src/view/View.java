@@ -166,9 +166,22 @@ public class View implements IView {
 	}
 	
 	void hightLightInner(JTextArea txt, int[] diff){
+		/*0: 공백 색 (x)
+		1: 왼쪽 색1
+		2: 양쪽 색 (x)
+		3: 오른쪽 색3
+		9: 출력끝*/
 		Highlighter highlighter = txt.getHighlighter();
 		for(int i=0; i<txt.getLineCount(); i++){
 			if (diff[i] == 1) {
+				try {
+					highlighter.addHighlight(txt.getLineStartOffset(i), txt.getLineEndOffset(i), new DefaultHighlighter.DefaultHighlightPainter(Color.orange) );
+				} catch (BadLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (diff[i] == 3) {
 				try {
 					highlighter.addHighlight(txt.getLineStartOffset(i), txt.getLineEndOffset(i), new DefaultHighlighter.DefaultHighlightPainter(Color.orange) );
 				} catch (BadLocationException e) {
