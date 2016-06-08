@@ -121,13 +121,17 @@ public class Controller implements IController{
 
 	@Override
 	public void copyToLeft() {
-		// TODO Auto-generated method stub
+		mp.copyToLeft(12); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
+		view.showData("left", left.DataToAString());
+		
 		System.out.println("C2L");
 	}
 
 	@Override
 	public void copyToRight() {
-		// TODO Auto-generated method stub
+		mp.copyToRight(1); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
+		view.showData("right", right.DataToAString());
+		
 		System.out.println("C2R");
 	}
 
@@ -135,9 +139,10 @@ public class Controller implements IController{
 	public void compare() {
 		// TODO Auto-generated method stub
 		mp.compare();
-		view.showDiffArea(mp.getLeftArea(), left.DataToAString() );
-		view.showDiffArea(mp.getRightArea(), right.DataToAString() );
-		
+	//	view.showDiffArea(mp.getLeftArea(), left.DataToAString() );
+	//	view.showDiffArea(mp.getRightArea(), right.DataToAString() );
+		view.showData("left", left.DataToAString());
+		view.showData("right", right.DataToAString());
 		System.out.println("COM");
 	}
 

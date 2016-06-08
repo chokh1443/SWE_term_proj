@@ -14,7 +14,9 @@ import java.util.Scanner;
 
 public class FileModel implements IModel{
 	ArrayList<String> Data = new ArrayList<String>();
+	boolean compared = false;
 	
+	@Override
 	public boolean loadData(String fileAddress){//This function called when load a file
 		Scanner loader = null;
 	
@@ -40,6 +42,7 @@ public class FileModel implements IModel{
 		return true; //done
 	}
 	
+	@Override
 	public String DataToAString(){
 		String result="";
 		
@@ -81,6 +84,17 @@ public class FileModel implements IModel{
 			return false; //fail to read 
 		}
 		return true;
+	}
+
+	@Override
+	public void setCompared() {
+		compared = true;
+		
+	}
+
+	@Override
+	public boolean getCompared() {
+		return compared;		
 	}
 	
 

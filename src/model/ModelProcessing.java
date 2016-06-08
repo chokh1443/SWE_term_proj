@@ -16,50 +16,22 @@ public class ModelProcessing implements IModelProcessing{
 		// TODO Auto-generated method stub
 		int l=0, r=0;
 		int leftLength = left.Data.size(), rightLength = right.Data.size();
-		int longerLength = 0;
-		
 		lcs = new int[leftLength+1][rightLength+1];
 
-	/*	
-		for(l = 1; l <= leftLength ; l++){ // 최종값은 lcs[leftLength][rightLength] 에 저장.
-			for(r = 1; r <= rightLength ; r++){
-				System.out.println("index left: " + l + " index right: " + r);
-				System.out.println(left.Data.get(l-1) + " ? " + right.Data.get(r-1));
-				if( left.Data.get(l-1).equals( right.Data.get(r-1) ) ){
-					System.out.println("Same. Writing areaLeft["+(l-1)+"] and areaRight["+(r-1)+"] as 0\n");
-						lcs[l][r] = lcs[l-1][r-1] + 1;
-						areaLeft[l-1] = 0;
-						areaRight[r-1] = 0;
-				}else{
-					lcs[l][r] = Math.max(lcs[l-1][r], lcs[l][r-1]);
-					System.out.println("Diff. Writing areaLeft[l-1] and areaRight[r-1] as 1\n");
-					areaLeft[l-1] = 1;
-					areaRight[r-1] = 1;
-				}
-			}
-		}*/
 		
 		for(l = leftLength-1; l >=0  ; l--){ // 최종값은 lcs[leftLength][rightLength] 에 저장.
 			for(r = rightLength-1; r >= 0 ; r--){
-				//System.out.println("index left: " + l + " index right: " + r);
-				//System.out.println(left.Data.get(l) + " ? " + right.Data.get(r));
 				if( left.Data.get(l).equals( right.Data.get(r) ) ){
-					//System.out.println("Same. Writing areaLeft["+(l)+"] and areaRight["+(r)+"] as 0\n");
-						lcs[l][r] = lcs[l+1][r+1] + 1;
-					//	areaLeft[l-1] = 0;
-					//	areaRight[r-1] = 0;
+						lcs[l][r] = lcs[l+1][r+1] + 1;						
 				}else{
 					lcs[l][r] = Math.max(lcs[l][r+1], lcs[l+1][r]);
-					//System.out.println("Diff. Writing areaLeft[l-1] and areaRight[r-1] as 1\n");
-					//areaLeft[l-1] = 1;
-					//areaRight[r-1] = 1;
 				}
 			}
 		}
 		
 		
-		areaLeft = new int[ leftLength + (leftLength - lcs[0][0]) ]; // 원래 길이 + 공통된 부분을 제외한 길이
-		areaRight = new int[ rightLength + (rightLength - lcs[0][0]) ];
+		areaLeft = new int[ leftLength + rightLength  ]; // worst case의 길이
+		areaRight = new int[ leftLength + rightLength ];
 		
 		for(l = 0; l <= leftLength ; l++){
 			for(r=0; r <= rightLength ; r++){
@@ -68,15 +40,8 @@ public class ModelProcessing implements IModelProcessing{
 			System.out.println("");
 		}
 		
-		/*
-		if(leftLength < rightLength)
-			longerLength = rightLength;
-		else
-			longerLength = leftLength;
-		*/
 		l = 0;
-		r = 0;
-		
+		r = 0;	
 		int temp;
 		int tl=0;
 		int tr=0;
@@ -85,80 +50,99 @@ public class ModelProcessing implements IModelProcessing{
 			temp = lcs[l][r];
 			
 			if(temp == lcs[l][r+1]){
-			//	areaL 공백
-				areaLeft[tl] = 0;
-				System.out.println("areaLeft[tl] = 0 tl++");
+			//	System.out.println("right");
+				areaLeft[tl] = 0; 			//	areaL 공백
+				left.Data.add(tl,"");
 				tl++;
-			//	areaR 라인
-				areaRight[tr] = 1;
-				System.out.println("areaRight[tr] = 1 tr++");
+				areaRight[tr] = 3;			//	areaR 라인
 				tr++;
 				
 				r++;
-				System.out.println("right");
+
 			}else if(temp == lcs[l+1][r]){
-			//	areaL 라인
-				areaLeft[tl] = 1;
-				System.out.println("areaLeft[tl] = 1 tl++");
+			//	System.out.println("down");
+				areaLeft[tl] = 1; 			//	areaL 라인
 				tl++;
-			//	areaR 공백
-				areaRight[tr] = 0;
-				System.out.println("areaRight[tr] = 0 tr++");
+				areaRight[tr] = 0;			//	areaR 공백		
+				right.Data.add(tr,"");
 				tr++;
 				
 				l++;
-				System.out.println("down");
 			}else{
-			//	areaL 라인
-				areaLeft[l] = 1;
-				System.out.println("areaLeft[tl] = 1 tl++");
+			//	System.out.println("diagonal");
+				areaLeft[tl] = 2;			//	areaL 라인
 				tl++;
-			//	areaR 라인
-				areaRight[r] = 1;
-				System.out.println("areaRight[tr] = 1 tr++");
+				areaRight[tr] = 2;			//	areaR 라인
 				tr++;
 				
 				l++;
 				r++;
-				System.out.println("diagonal");
 			}
 			
-			if( (l == leftLength) && (r < rightLength)){
-			// areaR 남은라인 추가
-				areaRight[r] = 99;
-				System.out.println("areaRight[tr] = 99 r++");
-				tr++;
-				System.out.println("Left part done.");
+			
+			if( (l == leftLength) && (r < rightLength)){// areaR 남은라인 추가
+				while(true){
+					areaRight[tr] = 3;
+					tr++;
+					left.Data.add(tl,"");
+					tl++;
+					r++;
+					if(r==rightLength)
+						break;
+				}
 				break;
-			}else if( (l < leftLength) && (r == rightLength)){
-			// areaL 남은라인 추가
-				areaLeft[l] = 99;
-				System.out.println("areaLeft[tl] = 99 tl++");
-				tl++;
-				System.out.println("Rightt part done.");
+			}else if( (l < leftLength) && (r == rightLength)){// areaL 남은라인 추가
+				while(true){
+					areaLeft[tl] = 1;
+					tl++;
+					right.Data.add(tr,"");
+					tr++;
+					l++;
+					if(l==leftLength)
+						break;
+				}
 				break;
 			}			
 		}
 		
-		for(int i = 0; i < tl; i++){
-			System.out.println(areaLeft[i]);
+		areaLeft[tl] = 9;
+		areaRight[tr] = 9;
+/*		
+		if(tl > tr){
+			for(int i = 0; i < tl; i++){
+				System.out.println(areaLeft[i] +" "+ areaRight[i]);
+			}
 		}
 		System.out.println("-------");
-		for(int i = 0; i < tr; i++){
-			System.out.println(areaRight[i]);
+		if(tl<tr){
+			for(int i = 0; i < tr; i++){
+				System.out.println(areaLeft[i] +" "+ areaRight[i]);
+			}
+		}*/
+		left.setCompared();
+		right.setCompared();
+	}
+
+	@Override
+	public void copyToRight(int sourceInd) {
+		if (left.getCompared() && right.getCompared()) {
+			if ((areaLeft[sourceInd] == 1) && (areaRight[sourceInd] == 0)) {
+				areaRight[sourceInd] = 2;
+				areaLeft[sourceInd] = 2;
+				right.Data.set(sourceInd, left.Data.get(sourceInd));
+			}
 		}
 	}
 
 	@Override
-	public void copyToRight(int sourceInd, int dstInd) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void copyToLeft(int sourceInd, int dstInd) {
-		// TODO Auto-generated method stub
-		
+	public void copyToLeft(int sourceInd) {
+		if (left.getCompared() && right.getCompared()) {
+			if ((areaRight[sourceInd] == 3) && (areaLeft[sourceInd] == 0)) {
+				areaRight[sourceInd] = 2;
+				areaLeft[sourceInd] = 2;
+				left.Data.set(sourceInd, right.Data.get(sourceInd));
+			}
+		}
 	}
 
 	@Override
