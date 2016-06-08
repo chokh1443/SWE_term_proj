@@ -29,6 +29,7 @@ public class ModelProcessing implements IModelProcessing{
 			}
 		}
 		
+		System.out.println("LCS completed");
 		
 		areaLeft = new int[ leftLength + rightLength  ]; // worst case의 길이
 		areaRight = new int[ leftLength + rightLength ];
@@ -48,9 +49,13 @@ public class ModelProcessing implements IModelProcessing{
 		
 		while(true){
 			temp = lcs[l][r];
+			if(l+1>leftLength)
+				break;
+			if(r+1>rightLength)
+				break;
 			
 			if(temp == lcs[l][r+1]){
-			//	System.out.println("right");
+				System.out.println("right");
 				areaLeft[tl] = 0; 			//	areaL 공백
 				left.Data.add(tl,"");
 				tl++;
@@ -60,7 +65,7 @@ public class ModelProcessing implements IModelProcessing{
 				r++;
 
 			}else if(temp == lcs[l+1][r]){
-			//	System.out.println("down");
+				System.out.println("down");
 				areaLeft[tl] = 1; 			//	areaL 라인
 				tl++;
 				areaRight[tr] = 0;			//	areaR 공백		
@@ -69,7 +74,7 @@ public class ModelProcessing implements IModelProcessing{
 				
 				l++;
 			}else{
-			//	System.out.println("diagonal");
+				System.out.println("diagonal");
 				areaLeft[tl] = 2;			//	areaL 라인
 				tl++;
 				areaRight[tr] = 2;			//	areaR 라인
@@ -107,7 +112,7 @@ public class ModelProcessing implements IModelProcessing{
 		
 		areaLeft[tl] = 9;
 		areaRight[tr] = 9;
-/*		
+		
 		if(tl > tr){
 			for(int i = 0; i < tl; i++){
 				System.out.println(areaLeft[i] +" "+ areaRight[i]);
@@ -118,7 +123,7 @@ public class ModelProcessing implements IModelProcessing{
 			for(int i = 0; i < tr; i++){
 				System.out.println(areaLeft[i] +" "+ areaRight[i]);
 			}
-		}*/
+		}
 		left.setCompared();
 		right.setCompared();
 	}

@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 
 //import controller.IController;
 
@@ -150,17 +153,31 @@ public class View implements IView {
 		}				
 	}
 
+
 	@Override
-	public void showDiffArea(int[] side, String data) {
-		// TODO Auto-generated method stub
-		System.out.println("-----------side---------------");
-		//System.out.println(side.length);
-		for(int i=0;i<side.length;i++){
-			System.out.println(side[i]);
+	public void highLight(String side, int[] diff) {
+		if(side.equals("left")) {
+			hightLightInner(textLeft, diff);
 		}
-		System.out.println("-----------sideEnd---------------");
-		//System.out.println(data);
+		if(side.equals("right")) {
+			hightLightInner(textRight, diff);
+		}
 		
+	}
+	
+	void hightLightInner(JTextArea txt, int[] diff){
+		Highlighter highlighter = txt.getHighlighter();
+		for(int i=0; i<txt.getLineCount(); i++){
+			if (diff[i] == 1) {
+				try {
+					highlighter.addHighlight(txt.getLineStartOffset(i), txt.getLineEndOffset(i), new DefaultHighlighter.DefaultHighlightPainter(Color.orange) );
+				} catch (BadLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
 	}
 
 

@@ -139,10 +139,11 @@ public class Controller implements IController{
 	public void compare() {
 		// TODO Auto-generated method stub
 		mp.compare();
-	//	view.showDiffArea(mp.getLeftArea(), left.DataToAString() );
-	//	view.showDiffArea(mp.getRightArea(), right.DataToAString() );
 		view.showData("left", left.DataToAString());
+		view.highLight("left", mp.getLeftArea());
 		view.showData("right", right.DataToAString());
+		view.highLight("right", mp.getRightArea());
+		
 		System.out.println("COM");
 	}
 
