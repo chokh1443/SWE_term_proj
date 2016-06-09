@@ -121,6 +121,7 @@ public class Controller implements IController{
 
 	@Override
 	public void copyToLeft() {
+		System.out.println("current line = "+view.getCursor("left"));
 		mp.copyToLeft(12); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
 		view.showData("left", left.DataToAString());
 		
@@ -129,6 +130,7 @@ public class Controller implements IController{
 
 	@Override
 	public void copyToRight() {
+		System.out.println("current line = "+view.getCursor("right"));
 		mp.copyToRight(1); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
 		view.showData("right", right.DataToAString());
 		

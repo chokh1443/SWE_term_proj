@@ -7,4 +7,5 @@ public interface IView {
 	public void showData(String side, String data);	
 	public void switchTextAreaEditable(String side);
 	public void highLight(String side, int[] diff);
+	public int getCursor(String side);
 }

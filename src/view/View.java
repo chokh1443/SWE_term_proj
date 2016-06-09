@@ -164,6 +164,28 @@ public class View implements IView {
 		}
 		
 	}
+	public int getCursor(String side) {
+		int line = -1;
+		if(side.equals("left")){
+			int cursor = textLeft.getCaretPosition();
+			try {
+				line = textLeft.getLineOfOffset(cursor);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(side.equals("right")){
+			int cursor = textRight.getCaretPosition();
+			try {
+				line = textRight.getLineOfOffset(cursor);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return line;
+	}
 	
 	void hightLightInner(JTextArea txt, int[] diff){
 		/*0: °ø¹é »ö (x)
