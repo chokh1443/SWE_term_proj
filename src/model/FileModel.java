@@ -19,9 +19,10 @@ public class FileModel implements IModel{
 	@Override
 	public boolean loadData(String fileAddress){//This function called when load a file
 		Scanner loader = null;
-	
+		File file = null;
 		try { // try to open Scanner
-			loader = new Scanner(new File(fileAddress));
+			file = new File(fileAddress);
+			loader = new Scanner(file);
 		} catch (FileNotFoundException e) {
 			System.out.println("Load failed in FileModel.loadData()");
 			e.printStackTrace();
@@ -97,6 +98,12 @@ public class FileModel implements IModel{
 	public boolean getCompared() {
 		return compared;		
 	}
+
+	@Override
+	public void updateData(ArrayList<String> data) {
+		this.Data = data;		
+	}
+	
 	
 
 }

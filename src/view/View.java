@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -228,6 +229,33 @@ public class View extends JFrame implements IView {
 			}
 		}
 
+	}
+
+	@Override
+	public ArrayList<String> StringToData(String side) {
+		// TODO Auto-generated method stub
+		ArrayList<String> data = new ArrayList<String>();
+		JTextArea txt = null;
+		if(side.equals("left")) {
+			txt = textLeft;
+		}
+		else if(side.equals("right")) {
+			txt= textRight;
+		}
+		for(int i=0;i<txt.getLineCount(); i++){
+			try {
+				int start = txt.getLineStartOffset(i);
+				int end = txt.getLineEndOffset(i);
+				if((end-start-2)>0){
+					data.add(txt.getText(start, (end-start-2)));
+				}
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return data;
 	}
 
 
