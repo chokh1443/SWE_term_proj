@@ -10,7 +10,7 @@ public interface IModel {
 	abstract boolean saveData(String string);
 	abstract void setCompared();
 	abstract boolean getCompared();
-	abstract void updateData(ArrayList<String> data);
+	abstract void saveEdit(ArrayList<String> data);
 	
 	
 }

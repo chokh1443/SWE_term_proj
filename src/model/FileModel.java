@@ -58,10 +58,6 @@ public class FileModel implements IModel{
 	}
 
 	
-	public void updateData(Object a) {
-	
-		
-	}
 
 	@Override
 	public boolean saveData(String fileAddress) {
@@ -100,7 +96,7 @@ public class FileModel implements IModel{
 	}
 
 	@Override
-	public void updateData(ArrayList<String> data) {
+	public void saveEdit(ArrayList<String> data) {
 		this.Data = data;		
 	}
 	
