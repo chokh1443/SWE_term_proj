@@ -15,11 +15,10 @@ public class ControllerTest {
 	FileModel right = new FileModel();
 	ModelProcessing mp = new ModelProcessing(left, right);
 	View view = new View();
-	Controller controller = null; 
+	Controller controller = new Controller(mp, view);
 	
 	@Test
-	public void testController() {
-		controller = new Controller(mp, view);
+	public void testSetup() {
 		controller.setup();
 		assertNotNull(controller);
 	}
