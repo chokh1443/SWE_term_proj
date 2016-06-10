@@ -112,12 +112,12 @@ public class Controller implements IController{
 			System.out.println("Fail to load at Controller.load()");
 		}
 		if (side.equals("left")){
-			left.updateData(view.StringToData(side));
+			left.saveEdit(view.StringToData(side));
 			left.saveData(fileAddress);
 		//	mp.Save("left",fileAddress);
 		}
 		else if(side.equals("right")) {
-			right.updateData(view.StringToData(side));
+			right.saveEdit(view.StringToData(side));
 			right.saveData(fileAddress);
 		}
 	}
