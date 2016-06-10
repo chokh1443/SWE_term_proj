@@ -1,5 +1,7 @@
 package model;
 
+
+
 public class ModelProcessing implements IModelProcessing {
 	FileModel left;
 	FileModel right;
@@ -51,7 +53,7 @@ public class ModelProcessing implements IModelProcessing {
 			int tl = 0;
 			int tr = 0;
 			String blank = "";
-			
+
 			while (true) {
 				temp = lcs[l][r];
 				if (l + 1 > leftLength)
@@ -61,7 +63,7 @@ public class ModelProcessing implements IModelProcessing {
 
 				if (temp == lcs[l][r + 1]) {
 					System.out.println("right");
-					areaLeft[tl] = 0; // areaL 공백
+					areaLeft[tl] = 8; // areaL 공백
 					left.Data.add(tl, blank);
 
 					tl++;
@@ -75,7 +77,7 @@ public class ModelProcessing implements IModelProcessing {
 					areaLeft[tl] = 1; // areaL 라인
 					tl++;
 
-					areaRight[tr] = 0; // areaR 공백
+					areaRight[tr] = 8; // areaR 공백
 					right.Data.add(tr, blank);
 
 					tr++;
@@ -144,11 +146,23 @@ public class ModelProcessing implements IModelProcessing {
 	@Override
 	public void copyToRight(int sourceInd) {
 		if (left.getCompared() && right.getCompared()) {
-			if ((areaLeft[sourceInd] == 1) && (areaRight[sourceInd] == 0)) {
-				areaRight[sourceInd] = 2;
-				areaLeft[sourceInd] = 2;
-				right.Data.set(sourceInd, left.Data.get(sourceInd));
-				compared = false;
+			if (right.Data.size() <= sourceInd) {
+				for (int i = right.Data.size(); i < sourceInd; i++) {
+					right.Data.add(i, "");
+					areaRight[i] = 0;
+				}
+				right.Data.add(sourceInd, left.Data.get(sourceInd));
+				areaRight[sourceInd] = 4;
+				areaLeft[sourceInd] = 4;
+			} else {
+		//		if ((areaLeft[sourceInd] == 1) && (areaRight[sourceInd] == 0)) {
+					areaRight[sourceInd] = 4;
+					areaLeft[sourceInd] = 4;
+					right.Data.set(sourceInd, left.Data.get(sourceInd));
+
+					// compared = false;
+	//			}
+
 			}
 		}
 	}
@@ -156,11 +170,21 @@ public class ModelProcessing implements IModelProcessing {
 	@Override
 	public void copyToLeft(int sourceInd) {
 		if (left.getCompared() && right.getCompared()) {
-			if ((areaRight[sourceInd] == 3) && (areaLeft[sourceInd] == 0)) {
-				areaRight[sourceInd] = 2;
-				areaLeft[sourceInd] = 2;
-				left.Data.set(sourceInd, right.Data.get(sourceInd));
-				compared = false;
+			if (left.Data.size() <= sourceInd) {
+				for (int i = left.Data.size(); i < sourceInd; i++) {
+					left.Data.add(i, "");
+					areaLeft[i] = 0;
+				}
+				left.Data.add(sourceInd, right.Data.get(sourceInd));
+				areaRight[sourceInd] = 4;
+				areaLeft[sourceInd] = 4;
+			} else {
+			//	if ((areaRight[sourceInd] == 3) && (areaLeft[sourceInd] == 0)) {
+					areaRight[sourceInd] = 4;
+					areaLeft[sourceInd] = 4;
+					left.Data.set(sourceInd, right.Data.get(sourceInd));
+					// compared = false;
+		//		}
 			}
 		}
 	}
@@ -188,5 +212,48 @@ public class ModelProcessing implements IModelProcessing {
 		// TODO Auto-generated method stub
 		return areaRight;
 	}
+
+	@Override
+	public void compareStatusReset() {
+		compared = false;
+
+	}
+
+/*	@Override
+	public void Save(String side, String addr) {
+		ArrayList<String> copyOfLeft = new ArrayList(left.Data);
+
+		if (side.equals("left")) {
+			for (int i = 0; i < copyOfLeft.size(); i++) {
+				if (areaLeft[i] == 8) {
+					copyOfLeft.remove(i);
+				}
+			}
+
+			File file = new File(addr);
+			try {
+				file.delete();
+			} catch (Exception e) {
+				System.out.println("Delete failed in FileModel.saveData()");
+			}
+
+			try { // try to open Scanner
+				BufferedWriter out = new BufferedWriter(new FileWriter(addr));
+				for (String s : copyOfLeft) {
+					out.write(s);
+					out.newLine();
+				}
+				out.close();
+			} catch (IOException e) {
+				System.out.println("Load failed in FileModel.saveData()");
+				e.printStackTrace();
+
+			}
+
+		} else if (side.equals("right")) {
+
+		}
+
+	}*/
 
 }

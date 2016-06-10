@@ -2,7 +2,7 @@ package controll;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+
 
 import javax.swing.JFileChooser;
 
@@ -82,16 +82,22 @@ public class Controller implements IController{
 		else {
 			System.out.println("Fail to load at Controller.load()");
 		}
+		view.disableText(side);
+		
 		if (side.equals("left")){
 			if( left.loadData(fileAddress)){
 				 view.showData(side, left.DataToAString());
 			}
+			
 		}
 		else if(side.equals("right")) {
 			if( right.loadData(fileAddress)){
 				 view.showData(side, right.DataToAString());
 			}
 		}
+		mp.compareStatusReset();
+		
+		
 	}
 
 	@Override
@@ -107,6 +113,7 @@ public class Controller implements IController{
 		}
 		if (side.equals("left")){
 			left.saveData(fileAddress);
+		//	mp.Save("left",fileAddress);
 		}
 		else if(side.equals("right")) {
 			right.saveData(fileAddress);
@@ -121,18 +128,28 @@ public class Controller implements IController{
 
 	@Override
 	public void copyToLeft() {
-		System.out.println("current line = "+view.getCursor("left"));
-		mp.copyToLeft(12); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
+		String side = "right";
+		System.out.println("current line = "+view.getCursor(side));
+		
+		mp.copyToLeft(view.getCursor(side)); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
+		
 		view.showData("left", left.DataToAString());
+		view.highLight("right", mp.getRightArea());
+		view.highLight("left", mp.getLeftArea());
 		
 		System.out.println("C2L");
 	}
 
 	@Override
 	public void copyToRight() {
-		System.out.println("current line = "+view.getCursor("right"));
-		mp.copyToRight(1); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
+		String side = "left";
+		System.out.println("current line = "+view.getCursor(side));
+		
+		mp.copyToRight(view.getCursor(side)); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
+		
 		view.showData("right", right.DataToAString());
+		view.highLight("right", mp.getRightArea());
+		view.highLight("left", mp.getLeftArea());
 		
 		System.out.println("C2R");
 	}

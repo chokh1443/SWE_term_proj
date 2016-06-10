@@ -1,11 +1,7 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.TextArea;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
@@ -215,10 +211,16 @@ public class View extends JFrame implements IView {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-			if (diff[i] == 3) {
+			}else if (diff[i] == 3) {
 				try {
 					highlighter.addHighlight(txt.getLineStartOffset(i), txt.getLineEndOffset(i), new DefaultHighlighter.DefaultHighlightPainter(Color.orange) );
+				} catch (BadLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else if(diff[i] == 4) { // 머지한부분
+				try {
+					highlighter.addHighlight(txt.getLineStartOffset(i), txt.getLineEndOffset(i), new DefaultHighlighter.DefaultHighlightPainter(Color.green) );
 				} catch (BadLocationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

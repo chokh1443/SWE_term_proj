@@ -9,4 +9,6 @@ public interface IModelProcessing {
 	abstract FileModel getRight();
 	abstract int[] getLeftArea();
 	abstract int[] getRightArea();
+	abstract void compareStatusReset();
+//	abstract void Save(String side,String addr);
 }
