@@ -15,8 +15,8 @@ import javax.swing.text.Highlighter;
 
 //import controller.IController;
 
-public class View implements IView {
-	static JFrame frame = new JFrame("myMerger");
+public class View extends JFrame implements IView {
+	//static JFrame frame = new JFrame("myMerger");
 
 	static JPanel panelLeft = new JPanel();
 	static JPanel panelRight = new JPanel();
@@ -62,23 +62,7 @@ public class View implements IView {
 		panelDown.add(copyToLeft);
 		panelDown.add(compare);
 		panelDown.add(copyToRight);
-
-		frame.setLayout(null);
-
-		frame.add(panelLeft);
-		frame.add(panelRight);
-		frame.add(panelDown);
-
-		frame.setSize(1000, 650);
-		frame.setResizable(false);
-
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
-	@Override
-	public void attachEvent(ActionListener action) {
-		// TODO Auto-generated method stub
+		
 		loadLeft.setName("loadLeft");
 		saveLeft.setName("saveLeft");
 		editLeft.setName("editLeft");
@@ -88,6 +72,35 @@ public class View implements IView {
 		copyToLeft.setName("copyToLeft");
 		copyToRight.setName("copyToRight");
 		compare.setName("compare");
+
+		/*frame.setLayout(null);
+
+		frame.add(panelLeft);
+		frame.add(panelRight);
+		frame.add(panelDown);
+
+		frame.setSize(1000, 650);
+		frame.setResizable(false);
+
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		this.setLayout(null);
+
+		this.add(panelLeft);
+		this.add(panelRight);
+		this.add(panelDown);
+
+		this.setSize(1000, 650);
+		this.setResizable(false);
+
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	@Override
+	public void attachEvent(ActionListener action) {
+		// TODO Auto-generated method stub
+
 		
 		loadLeft.addActionListener(action);
 		saveLeft.addActionListener(action);
