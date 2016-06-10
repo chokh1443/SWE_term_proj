@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/fest-swing-1.2/extensions/junit/fest-swing-junit-4.5-1.2/lib/junit-4.5-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/fest-swing-1.2/extensions/junit/fest-swing-junit-4.5-1.2/lib/junit-4.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
