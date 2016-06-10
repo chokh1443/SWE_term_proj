@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 
 //import controller.IController;
 
@@ -150,17 +153,66 @@ public class View implements IView {
 		}				
 	}
 
+
 	@Override
-	public void showDiffArea(int[] side, String data) {
-		// TODO Auto-generated method stub
-		System.out.println("-----------side---------------");
-		//System.out.println(side.length);
-		for(int i=0;i<side.length;i++){
-			System.out.println(side[i]);
+	public void highLight(String side, int[] diff) {
+		if(side.equals("left")) {
+			hightLightInner(textLeft, diff);
 		}
-		System.out.println("-----------sideEnd---------------");
-		//System.out.println(data);
+		if(side.equals("right")) {
+			hightLightInner(textRight, diff);
+		}
 		
+	}
+	public int getCursor(String side) {
+		int line = -1;
+		if(side.equals("left")){
+			int cursor = textLeft.getCaretPosition();
+			try {
+				line = textLeft.getLineOfOffset(cursor);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(side.equals("right")){
+			int cursor = textRight.getCaretPosition();
+			try {
+				line = textRight.getLineOfOffset(cursor);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return line;
+	}
+	
+	void hightLightInner(JTextArea txt, int[] diff){
+		/*0: 공백 색 (x)
+		1: 왼쪽 색1
+		2: 양쪽 색 (x)
+		3: 오른쪽 색3
+		9: 출력끝*/
+		Highlighter highlighter = txt.getHighlighter();
+		for(int i=0; i<txt.getLineCount(); i++){
+			if (diff[i] == 1) {
+				try {
+					highlighter.addHighlight(txt.getLineStartOffset(i), txt.getLineEndOffset(i), new DefaultHighlighter.DefaultHighlightPainter(Color.orange) );
+				} catch (BadLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (diff[i] == 3) {
+				try {
+					highlighter.addHighlight(txt.getLineStartOffset(i), txt.getLineEndOffset(i), new DefaultHighlighter.DefaultHighlightPainter(Color.orange) );
+				} catch (BadLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
 	}
 
 

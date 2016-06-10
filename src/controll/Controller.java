@@ -121,6 +121,7 @@ public class Controller implements IController{
 
 	@Override
 	public void copyToLeft() {
+		System.out.println("current line = "+view.getCursor("left"));
 		mp.copyToLeft(12); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
 		view.showData("left", left.DataToAString());
 		
@@ -129,6 +130,7 @@ public class Controller implements IController{
 
 	@Override
 	public void copyToRight() {
+		System.out.println("current line = "+view.getCursor("right"));
 		mp.copyToRight(1); // 파라메터로 옮기고싶은 인덱스를 넣어줘야함
 		view.showData("right", right.DataToAString());
 		
@@ -139,10 +141,11 @@ public class Controller implements IController{
 	public void compare() {
 		// TODO Auto-generated method stub
 		mp.compare();
-	//	view.showDiffArea(mp.getLeftArea(), left.DataToAString() );
-	//	view.showDiffArea(mp.getRightArea(), right.DataToAString() );
 		view.showData("left", left.DataToAString());
+		view.highLight("left", mp.getLeftArea());
 		view.showData("right", right.DataToAString());
+		view.highLight("right", mp.getRightArea());
+		
 		System.out.println("COM");
 	}
 
