@@ -145,6 +145,8 @@ public class Controller implements IController{
 		view.highLight("left", mp.getLeftArea());
 		view.showData("right", right.DataToAString());
 		view.highLight("right", mp.getRightArea());
+		view.enableText("left");
+		view.enableText("right");
 		
 		System.out.println("COM");
 	}
