@@ -39,28 +39,4 @@ public class ModelProcessingTest {
 		mp.copyToLeft(0);
 	}
 
-	@Test
-	public void testGetLeft() {
-		testCompare();
-		mp.getLeft();
-	}
-
-	@Test
-	public void testGetRight() {
-		testCompare();
-		mp.getRight();
-	}
-
-	@Test
-	public void testGetLeftArea() {
-		testCompare();
-		mp.getLeftArea();
-	}
-
-	@Test
-	public void testGetRightArea() {
-		testCompare();
-		mp.getRightArea();
-	}
-
 }
